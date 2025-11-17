@@ -8,8 +8,8 @@ import "@/styles/globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Project Dashboard",
-  description: "Modern project management dashboard",
+  title: "SoulThread",
+  description: "soulthread.dev",
 }
 
 export default function RootLayout({

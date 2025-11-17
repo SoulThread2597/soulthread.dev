@@ -19,7 +19,7 @@ const getValidSubdomain = (host?: string | null) => {
   return subdomain ?? ((host as string).split('.')[0].includes('localhost') ? null : "www");
 };
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const url = request.nextUrl.clone();
 
   const host = request.headers.get('host');
@@ -29,9 +29,6 @@ export function middleware(request: NextRequest) {
     url.pathname = `/${subdomain}${url.pathname}`;
   }
 
-  console.log(url)
-
-  // return NextResponse.next()
   return NextResponse.rewrite(url);
 }
 

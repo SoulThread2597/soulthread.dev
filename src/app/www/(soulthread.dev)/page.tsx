@@ -5,6 +5,7 @@ export default function Home() {
     <div className="flex min-h-screen w-full items-center justify-center">
       <main className="flex w-full max-w-3xl flex-col items-center justify-center gap-8 px-8">
         <div className="flex flex-col items-center gap-6 text-center">
+
           <Badge variant="outline" className="px-4 py-1 text-sm font-medium">
             Under Maintenance
           </Badge>
