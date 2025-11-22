@@ -7,9 +7,32 @@ import "@/styles/globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata: Metadata = {
-  title: "SoulThread",
-  description: "soulthread.dev",
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: {
+      default: "SoulThread",
+      template: "%s | SoulThread",
+    },
+    description: "The homepage of SoulThread.dev",
+    creator: "SoulThread",
+    openGraph: {
+      title: "SoulThread",
+      description: `The official website of SoulThread.`,
+      type: 'website',
+      url: 'https://soulthread.dev',
+    },
+    twitter: {
+      card: "summary",
+      images: [
+        {
+          url: 'https://soulthread.dev/logo.png',
+          width: 64,
+          height: 64,
+          alt: 'SoulThread\'s logo',
+        }
+      ],
+    }
+  }
 }
 
 export default function RootLayout({
