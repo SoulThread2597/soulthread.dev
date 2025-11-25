@@ -5,6 +5,7 @@ import Link from "next/link"
 import { FlickeringGrid } from "@/src/components/backgrounds/flickering-grid";
 import { Seperator } from "@/components/ui/seperator";
 import { Github } from "lucide-react";
+import Image from "next/image";
 
 export default async function Home() {
   const allRepositories = [
@@ -16,7 +17,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
-      <section className="relative flex w-full items-center justify-center py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 overflow-hidden">
+      <section className="relative flex w-full items-center justify-center py-4 sm:py-8 md:py-12 lg:py-16 xl:py-20 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-br from-purple-500/10 via-transparent to-purple-950/20 z-0" />
         <div className="absolute inset-0 bg-linear-to-tl from-purple-600/10 via-transparent to-purple-900/20 z-0" />
         <FlickeringGrid
@@ -28,19 +29,28 @@ export default async function Home() {
           maxOpacity={0.3}
         />
         <div className="relative z-10 flex flex-col items-center gap-6 md:gap-8 px-4 text-center md:px-6">
+          <div className="rounded-full p-1 bg-linear-to-br from-purple-400 via-purple-500 to-purple-600">
+            <Image
+              src="/logo.png"
+              alt="SoulThread"
+              width={150}
+              height={150}
+              className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-[150px] lg:h-[150px]"
+            />
+          </div>
           <div className="space-y-3 md:space-y-4">
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl bg-linear-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-              Welcome to SoulThread.dev
+              Hi, I&apos;m SoulThread
             </h1>
             <Seperator variant="gradient-fade" />
             <p className="mx-auto max-w-[700px] text-base sm:text-lg text-muted-foreground md:text-xl px-4">
-              Crafting elegant solutions with modern technologies. Full-stack development with a focus on quality and innovation.
+              A passionate developer and software engineering student building meaningful digital experiences.
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">
-        <Button asChild size="lg">
-          <Link href="/about">Learn More</Link>
-        </Button>
+            <Button asChild size="lg">
+              <Link href="/about">Learn More</Link>
+            </Button>
           </div>
         </div>
       </section>

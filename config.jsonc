@@ -1,0 +1,9 @@
+{
+  "maintenance": {
+    "isEnabled": false,
+    "message": "We're working hard to bring you an even better experience. Check back soon!",
+    "mode": "full", // options: "full", "partial-block", "partial-allow"
+    "subdomainsBlocked": [],
+    "subdomainsAllowed": []
+  }
+}

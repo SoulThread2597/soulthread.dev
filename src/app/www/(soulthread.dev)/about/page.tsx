@@ -1,30 +1,31 @@
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import type { Metadata } from "next"
 import { Seperator } from "@/components/ui/seperator";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/src/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: 'About Me',
+}
 
 export default function About() {
   return (
     <div className="flex min-h-screen w-full flex-col overflow-x-hidden">
       <section className="relative w-full py-8 md:py-12 lg:py-16 overflow-hidden">
-        <div className="relative px-6 sm:px-12 md:px-16 lg:px-24 flex flex-col gap-8 md:gap-12">
-          <div className="flex flex-col items-center gap-4 md:gap-6 text-center">
-            <Image
-            src="/logo.png"
-            alt="SoulThread"
-            width={200}
-            height={200}
-            className="rounded-full w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-[200px] lg:h-[200px]"
-          />
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              {"Hi, I'm SoulThread"}
-            </h1>
-            
-            <p className="mx-auto max-w-[700px] text-base sm:text-lg text-muted-foreground md:text-xl px-4">
-              A passionate developer and software engineering student building meaningful digital experiences
-            </p>
+        <div className="relative px-6 sm:px-12 md:px-16 lg:px-24 flex flex-col gap-6 md:gap-8">
+          <div className="flex flex-col items-center gap-6 md:gap-8 text-center">
+            <div className="space-y-3 md:space-y-4">
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
+                About Me
+              </h1>
+              <p className="mx-auto max-w-[800px] text-base sm:text-lg text-muted-foreground md:text-xl px-4">
+                Here&apos;s a bit about my journey, what motivates me as a developer, and the core values that shape how I approach my work
+              </p>
+            </div>
+            <Badge variant="secondary" className="text-sm md:text-base px-4 py-2">
+              Software Engineering Student & Full-Stack Developer
+            </Badge>
           </div>
         </div>
       </section>

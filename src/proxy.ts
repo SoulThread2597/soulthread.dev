@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { setConfig } from '@/lib/utils';
 
 declare const global: SoulThreadDevGlobal;
 
@@ -20,23 +21,33 @@ const getValidSubdomain = (host?: string | null) => {
   return subdomain ?? ((host as string).split('.')[0].includes('localhost') ? null : "www");
 };
 
-export function proxy(request: NextRequest) {
-  global.env.MAINTENANCE_MODE = process.env.MAINTENANCE_MODE === "true";
-  const url = request.nextUrl.clone();
+export async function proxy(request: NextRequest) {
+  if (process.env.NEXT_RUNTIME === "nodejs") {
+    await setConfig();
 
-  if (global.env.MAINTENANCE_MODE) {
-    url.pathname = `/www/maintenance`;
+    const url = request.nextUrl.clone();
+    const host = request.headers.get('host');
+    const subdomain = getValidSubdomain(host);
+
+    if (global.config.maintenance?.isEnabled && ( global.config.maintenance?.mode === "full" || 
+    (global.config.maintenance?.mode === "partial-block" && subdomain && global.config.maintenance?.subdomainsBlocked?.includes(subdomain)) ||
+    (global.config.maintenance?.mode === "partial-allow" && subdomain && !global.config.maintenance?.subdomainsAllowed?.includes(subdomain))
+    )) {
+      url.pathname = `/www/maintenance`;
+      return NextResponse.rewrite(url);
+    }
+
+    if (!global.config.maintenance?.isEnabled && url.pathname === '/maintenance') {
+      url.pathname = `/`;
+      return NextResponse.redirect(url);
+    }
+    
+    if (subdomain) {
+      url.pathname = `/${subdomain}${url.pathname}`;
+    }
+
     return NextResponse.rewrite(url);
   }
-  
-  const host = request.headers.get('host');
-  const subdomain = getValidSubdomain(host);
-  
-  if (subdomain) {
-    url.pathname = `/${subdomain}${url.pathname}`;
-  }
-
-  return NextResponse.rewrite(url);
 }
 
 export const config = {

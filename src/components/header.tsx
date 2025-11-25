@@ -13,8 +13,9 @@ export function Header() {
             alt="Logo"
             width={32}
             height={32}
+            className="rounded-lg"
           />
-          <span className="truncate font-semibold w-min">SoulThread.dev</span>
+          <span className="truncate font-semibold w-min">SoulThread</span>
         </div>
       </div>
       <ThemeToggleButton />

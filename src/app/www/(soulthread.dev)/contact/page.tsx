@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import type { Metadata } from "next"
 import { Seperator } from "@/components/ui/seperator";
 import { Mail, Globe } from "lucide-react";
 
+export const metadata: Metadata = {
+  title: 'Contact',
+}
 
 export default function Contact() {
   return (

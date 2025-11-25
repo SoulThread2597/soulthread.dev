@@ -1,9 +1,16 @@
 import * as React from 'react'
+import type { Metadata } from "next"
 import { Badge } from "@/components/ui/badge";
 import { FlickeringGrid } from "@/src/components/backgrounds/flickering-grid";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";;
 import { Card } from '@/src/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Maintenance',
+}
+
+declare const global: SoulThreadDevGlobal;
 
 export default function Maintenance() {
   return (
@@ -39,7 +46,7 @@ export default function Maintenance() {
                 🚧 SoulThread.dev is currently undergoing maintenance and improvements. 🚧
               </p>
               <p className="text-sm sm:text-base text-muted-foreground px-4">
-                We&apos;re working hard to bring you an even better experience. Check back soon!
+                {global.config.maintenance.message || "We're working hard to bring you an even better experience. Check back soon!"}
               </p>
             </div>
 

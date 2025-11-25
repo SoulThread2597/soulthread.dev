@@ -28,16 +28,8 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <div className="flex items-center gap-2 px-2 pt-3 pb-5 justify-center">
-              {/* <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Image
-                  src="/logo.png"
-                  alt="Logo"
-                  width={32}
-                  height={32}
-                />
-              </div> */}
               <div>
-                <span className="truncate font-semibold w-min">SoulThread.dev</span>
+                <span className="truncate font-semibold w-min">SoulThread</span>
               </div>
             </div>
             <Seperator variant="diamond" />

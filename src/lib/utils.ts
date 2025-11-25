@@ -1,5 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge";
+import { promises as fs } from 'fs';
+import path from 'path';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -68,4 +70,24 @@ export const isStaticAsset = createRouteMatcher([
   '*.woff2',
   '*.ttf',
   '*.eot'
-])
+]);
+
+export async function setConfig() {
+  if (process.env.NEXT_RUNTIME === "nodejs") {
+    const fs = await import("fs");
+    const path = await import("path");
+
+    const configPath = path.join(process.cwd(), "config.jsonc");
+      if (!fs.existsSync(configPath)) {
+        console.log("config not found, creating one at", configPath);
+        fs.writeFileSync(configPath, `{}`);
+    }
+
+    const fileContent = fs.readFileSync(configPath, 'utf-8');
+    // Remove comments from JSONC (both single-line // and multi-line /* */)
+    const jsonContent = fileContent
+      .replace(/\/\*[\s\S]*?\*\//g, '') // Remove multi-line comments
+      .replace(/\/\/.*/g, ''); // Remove single-line comments
+    global.config = JSON.parse(jsonContent);
+  }
+}
