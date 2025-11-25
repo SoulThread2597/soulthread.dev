@@ -14,18 +14,18 @@ export default function SoulThreadDevLayout({
 
   return (
     <div className="h-full w-full bg-background flex">
-      <SidebarProvider>
+      <SidebarProvider defaultOpen={false}>
         <AppSidebar />
         <SidebarInset className="flex flex-col h-[calc(100%-16px)] w-full min-w-0">
           <Header />
-          <div className="flex flex-col flex-1 bg-background min-h-0 min-w-0 p-4 h-full">
+          <div className="flex flex-col flex-1 bg-background min-h-0 min-w-0 h-full">
             <div className="flex-1 overflow-x-auto overflow-y-auto min-h-0 min-w-0">
               {children}
             </div>
-            <footer className="text-center text-muted-foreground w-full pt-4 shrink-0 border-t border-border">
-              <p className="text-sm">&copy; {currentYear} - <span className="font-bold">SoulThread</span> - All rights reserved.</p>
-            </footer>
           </div>
+            <footer className="text-center text-muted-foreground w-full py-3 shrink-0 border-t border-border">
+              <p className="text-xs">&copy; {currentYear} - <span className="font-bold">SoulThread</span> - All rights reserved.</p>
+            </footer>
         </SidebarInset>
       </SidebarProvider>
     </div>

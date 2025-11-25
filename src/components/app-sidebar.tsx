@@ -1,6 +1,6 @@
 "use client"
 
-import { CodeXml, Settings, Calendar, Home, Inbox, Search } from "lucide-react"
+import { Settings, FileUser } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
@@ -11,32 +11,36 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarTrigger,
-  SidebarRail
+  SidebarMenuItem
 } from "@/components/ui/sidebar"
 import { DynamicIcon } from "@/components/dynamic-icon"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Seperator } from "@/components/ui/seperator";
+import Image from "next/image"
 
 export function AppSidebar() {
   const pathname = usePathname()
 
-return (
-  <Sidebar variant="inset" className="border-r border-sidebar-border bg-sidebar">
-    <SidebarHeader>
+  return (
+    <Sidebar variant="sidebar" className="border-r border-sidebar-border bg-sidebar">
+      <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link href="/" className="flex items-center gap-2">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <CodeXml className="size-4" />
-                </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">SoulThread.dev</span>
-                </div>
-              </Link>
-            </SidebarMenuButton>
+            <div className="flex items-center gap-2 px-2 pt-3 pb-5 justify-center">
+              {/* <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                />
+              </div> */}
+              <div>
+                <span className="truncate font-semibold w-min">SoulThread.dev</span>
+              </div>
+            </div>
+            <Seperator variant="diamond" />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -45,7 +49,7 @@ return (
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="pl-4">
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={pathname === "/"}>
                   <Link href="/">
@@ -55,9 +59,17 @@ return (
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
+                <SidebarMenuButton asChild isActive={pathname === "/contact"}>
+                  <Link href="/contact">
+                    <DynamicIcon iconName="Contact" className="h-4 w-4" />
+                    <span>Contact</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={pathname === "/about"}>
                   <Link href="/about">
-                    <DynamicIcon iconName="Contact" className="h-4 w-4" />
+                    <DynamicIcon iconName="FileUser" className="h-4 w-4" />
                     <span>About</span>
                   </Link>
                 </SidebarMenuButton>
@@ -67,7 +79,7 @@ return (
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter>
+      {/* <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild isActive={pathname === "/settings"}>
@@ -78,8 +90,8 @@ return (
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
+      </SidebarFooter> */}
 
     </Sidebar>
-)
+  )
 }

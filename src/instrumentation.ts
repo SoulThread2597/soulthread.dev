@@ -8,6 +8,7 @@ async function initializeGlobalVariables() {
       const validEnvs = ["development", "production", "test"] as const;
       return validEnvs.includes(envValue as any) ? envValue as "development" | "production" | "test" : "development";
     })(),
+    MAINTENANCE_MODE: process.env.MAINTENANCE_MODE === "true",
 
     VERSION: process.env.npm_package_version || "1.0.0",
     OS: typeof process !== 'undefined' && typeof process.platform !== 'undefined' ? process.platform : "unknown",

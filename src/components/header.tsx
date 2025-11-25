@@ -1,15 +1,23 @@
 import { ThemeToggleButton } from "@/components/theme-toggle"
 import { SidebarTrigger } from "@/components/ui/sidebar"
+import Image from "next/image"
 
 export function Header() {
   return (
-    <header className="flex h-16 shrink-0 items-center gap-2 border-b border-border bg-background px-4">
+    <header className="flex h-12 shrink-0 items-center gap-2 border-b border-border bg-background px-4 justify-evenly">
       <SidebarTrigger className="-ml-1" />
-      <div className="flex flex-1 items-center gap-2">
-        <div className="ml-auto flex items-center gap-2">
-          <ThemeToggleButton />
+      <div className="flex-1 justify-center flex">
+        <div className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={32}
+            height={32}
+          />
+          <span className="truncate font-semibold w-min">SoulThread.dev</span>
         </div>
       </div>
+      <ThemeToggleButton />
     </header>
   )
 }

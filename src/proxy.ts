@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
+declare const global: SoulThreadDevGlobal;
 
 const getValidSubdomain = (host?: string | null) => {
   //? Credit to @InimicalPart for the subdomain code (https://github.com/InimicalPart)
@@ -20,11 +21,17 @@ const getValidSubdomain = (host?: string | null) => {
 };
 
 export function proxy(request: NextRequest) {
+  global.env.MAINTENANCE_MODE = process.env.MAINTENANCE_MODE === "true";
   const url = request.nextUrl.clone();
 
+  if (global.env.MAINTENANCE_MODE) {
+    url.pathname = `/www/maintenance`;
+    return NextResponse.rewrite(url);
+  }
+  
   const host = request.headers.get('host');
   const subdomain = getValidSubdomain(host);
-
+  
   if (subdomain) {
     url.pathname = `/${subdomain}${url.pathname}`;
   }
