@@ -46,7 +46,7 @@ export default function Maintenance() {
                 🚧 SoulThread.dev is currently undergoing maintenance and improvements. 🚧
               </p>
               <p className="text-sm sm:text-base text-muted-foreground px-4">
-                {global.config.maintenance?.message || "We're working hard to bring you an even better experience. Check back soon!"}
+                {global?.config?.maintenance?.message || "We're working hard to bring you an even better experience. Check back soon!"}
               </p>
             </div>
 
