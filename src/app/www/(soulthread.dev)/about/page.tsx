@@ -81,7 +81,7 @@ export default function About() {
               </p>
               <p>
                 {`Realizing 'Cosmo' was still too big for a solo developer, I focused on expanding my toolkit. I dove headfirst into becoming a true full-stack developer, mastering `}
-                <span className="font-medium text-foreground/90">Python, HTML, CSS, JavaScript, TypeScript, Node.js, Tailwind, Java, Linux, MongoDB, Git, Docker</span>
+                <span className="font-medium text-foreground/90">Python, HTML, CSS, JavaScript, TypeScript, Node.js, Tailwind CSS, Java, Linux, MongoDB, Git, Docker</span>
                 {`, and so much more. This self-taught journey solidified my decision to pursue software engineering formally, where I could deepen my understanding of computer science principles while continuing to build real-world applications.`}
               </p>
             </div>
